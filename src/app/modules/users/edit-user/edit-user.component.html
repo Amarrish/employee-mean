@@ -1,0 +1,55 @@
+<div class="d-flex border border-light">
+    <div style="width: 200px; height: 90vh;" class="sidebar bg-info p-3 d-flex flex-column">
+        <a routerLink="/home">Home</a>
+        <a routerLink="/users">Users</a>
+    </div>
+    <div class="dashboard p-3 w-50">
+      <div class="title">
+        <h1>Edit User Details</h1>
+      </div>
+      <div class="user-details mt-3 shadow border rounded p-3 w-100">
+        <form #addUserForm="ngForm">
+  
+          <div class="mb-3">
+            <label for="exampleInputuserid" class="form-label">User ID</label>
+            <input type="text" class="form-control" id="exampleInputuserid" aria-describedby="emailHelp" name="id"
+              pattern="[0-9]*" required #id="ngModel" [(ngModel)]="user.id">
+          </div>
+          <!-- invalid -->
+          <div *ngIf="id.invalid && id.touched" class="mb-3 text-danger">*Invalid Id</div>
+  
+          <div class="mb-3">
+            <label for="exampleInputusrname" class="form-label">User Name</label>
+            <input type="email" class="form-control" id="exampleInputusrname" aria-describedby="emailHelp" name="name"
+              pattern="[a-zA-Z]*" required #name="ngModel" [(ngModel)]="user.name">
+          </div>
+  
+          <!-- invalid -->
+          <div *ngIf="name.invalid && name.touched" class="mb-3 text-danger">*Invalid Name</div>
+  
+          <div class="mb-3">
+            <label for="exampleInputEmail" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" name="email"
+              email required #email="ngModel" [(ngModel)]="user.email">
+          </div>
+          <!-- invalid -->
+          <div *ngIf="email.invalid && email.touched" class="mb-3 text-danger">*Invalid Email</div>
+  
+          <div class="mb-3">
+            <label for="exampleInputstatus" class="form-label">status</label>
+            <select name="active" id="exampleInputstatus" class="form-control" [(ngModel)]="user.active" #active="ngModel"
+              required>
+              <option value="1">Active</option>
+              <option value="0">Inactive</option>
+            </select>
+          </div>
+          <div *ngIf="active.invalid && active.touched" class="mb-3 text-danger">*Invalid status</div>
+          <div>
+            <button (click)="cancelUpdate(user.id)" class="btn btn-warning">Cancel</button>
+            <button (click)="updateuser()" [disabled]="addUserForm.invalid"  class="btn btn-success ms-5">Save</button>
+          </div>
+  
+        </form>
+      </div>
+    </div>
+</div>

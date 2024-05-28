@@ -1,0 +1,43 @@
+<div class="d-flex border border-light">
+    <div style="width: 200px; height: auto;" class="sidebar bg-info p-3 d-flex flex-column">
+        <a routerLink="/home">Home</a>
+        <a routerLink="/users">Users</a>
+    </div>
+    <div class="dashboard p-3 w-100">
+        <div class="title d-flex justify-content-between">
+            <h1>Users List</h1>
+            <button routerLink="add" class="btn btn-warning"><i class="fa-solid fa-user-plus"></i>Add user</button>
+        </div>
+<!-- Search By Name -->
+        <div class="d-flex m-3 align-items-center">
+            Search : <input type="text" placeholder="Search By user name" class="ms-2 form-control w-50">
+        </div>
+
+        <div class="table mt-5">
+            <table class="table shadow">
+                <thead>
+                    <tr>
+                        <th>User Id</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of allUsers" [hidden]="user.id==1">
+                        <th>{{user.id}}</th>
+                        <th>{{user.name}}</th>
+                        <th>{{user.email}}</th>
+                        <th> <span [ngClass]="user.active=='1'? 'btn btn-success':'btn btn-danger' ">{{user.active==="1"?'Active':'InActive'}}</span></th>
+
+                        <th>
+                            <a routerLink="edit/{{user.id}}" href=""><i class="fa-solid fa-pen text-sucess me-4 btn"></i></a>
+                            <i (click)="deleteuser(user.id)" class="fa-solid fa-trash text-danger btn"></i>
+                        </th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
